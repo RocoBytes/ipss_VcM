@@ -1,5 +1,6 @@
 import express from "express";
 import { db } from "./config/db.js";
+import colors from "colors";
 import dotenv from "dotenv";
 import servicesRoutes from "./routes/servicesRoutes.js";
 
@@ -13,7 +14,7 @@ const app = express();
 db();
 
 // Definir una ruta
-app.use('/services', servicesRoutes);
+app.use('/api/services', servicesRoutes);
 
 // Definir puerto
 const PORT = process.env.PORT || 4000;
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
 
 // Arrancar la app
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log( colors.blue.bgMagenta( `Server is running on port ${PORT}`));
 });
 
 console.log(process.env);
