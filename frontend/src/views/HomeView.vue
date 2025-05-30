@@ -3,6 +3,6 @@
 
 <template>
   <main>
-    <h1 class="text 3xl">App Salon</h1>
+    <h1 class="text 3xl">Yohanna Rodriguez Studio</h1>
   </main>
 </template>
