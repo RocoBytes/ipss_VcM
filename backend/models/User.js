@@ -1,26 +1,27 @@
 import mongoose from 'mongoose'
-import { uniqueId } from '../utils'
+import { uniqueId } from '../utils/index.js'
 
 const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        trim: trust
+        trim: true
     },
     password:{
         type: String,
         required: true,
-        trim: trust
+        trim: true
     },
     email:{
         type: String,
         required: true,
-        trim: trust,
-        unique: true
+        trim: true,
+        unique: true,
+        lowercase: true
     },
     token: {
         type: String,
-        default: () => uniqueId
+        default: () => uniqueId()
     },
     verified: {
         type: Boolean,
