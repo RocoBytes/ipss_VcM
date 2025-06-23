@@ -13,7 +13,12 @@ export default {
         "app" : "url('/img/1.jpg')",
       },
       colors:{
-        "vtd-primary" : colors.blue
+        "vtd-primary" : colors.blue,
+        "light-mauve": "#c5a2cb",
+        "pastel-lilac": "#e0bfe4",
+        "deep-plum": "#5b3c62",
+        "muted-grape": "#92608a",
+        "dark-indigo": "#110721",
       }
     },
   },
