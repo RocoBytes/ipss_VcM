@@ -1,4 +1,5 @@
 import User from '../models/User.js'
+import { sendEmailVerification } from '../emails/authEmailService.js'
 
 const register = async (req, res) => {
     
@@ -27,7 +28,10 @@ const register = async (req, res) => {
 
     try {
         const user = new User(req.body)
-        await user.save()
+        const result = await user.save()
+
+        const {name, email, token} = result
+        sendEmailVerification({ name, email, token })
 
         res.json({
             msg: 'El usuario se creo correctamente, revisa tu email'
@@ -37,7 +41,47 @@ const register = async (req, res) => {
     }
 } 
 
+const verifyAccount = async (req, res) => {
+    const {token} = req.params
+
+    const user = await User.findOne({token})
+    if(!user){
+        const error = new Error('Hubo un error, token no válido')
+        return res.status(401).json({msg: error.message})
+    }
+
+
+    // Si el token es valido, confirmar la cuenta canbiando el verified de false a true
+    try {
+        user.verified = true
+        user.token = ''
+        await user.save()
+        res.json({msg: 'Usuario Confirmado Correctamente'})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const login = async (req, res) => {
+    const {email, password} = req.body
+
+    // Revisar que el usuario exista
+    const user = await User.findOne({email})
+    if(!user){
+        const error = new Error('El usuario no existe')
+        return res.status(401).json({msg: error.message})
+    }
+
+    // Revisar si el usuario confirmo su Cuenta
+
+    
+    // Comprobar la password
+
+}
+
 
 export{
-    register
+    register,
+    verifyAccount,
+    login
 }
