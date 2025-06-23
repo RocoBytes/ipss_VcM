@@ -73,9 +73,20 @@ const login = async (req, res) => {
     }
 
     // Revisar si el usuario confirmo su Cuenta
-
+    if(!user.verified){
+        const error = new Error('Tu cuenta no ha sido confirmada aún')
+        return res.status(401).json({msg: error.message})
+    }
     
     // Comprobar la password
+    if(await user.checkPassword(password)){
+        res.json({
+            msg:'Usuario autenticado'
+        })
+    } else{
+        const error = new Error('La contrasena es incorrecta')
+        return res.status(401).json({msg: error.message})
+    }
 
 }
 
