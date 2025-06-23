@@ -72,7 +72,7 @@ const login = async (req, res) => {
         return res.status(401).json({msg: error.message})
     }
 
-    // Revisar si el usuario confirmo su Cuenta
+    // Revisar si el uqsuario confirmo su Cuenta
     if(!user.verified){
         const error = new Error('Tu cuenta no ha sido confirmada aún')
         return res.status(401).json({msg: error.message})
