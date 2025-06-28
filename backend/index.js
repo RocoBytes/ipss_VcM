@@ -38,6 +38,7 @@ app.use(cors(corsOptions))
 // Definir una ruta
 app.use('/api/services', servicesRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/appointments', appointmentRoutes);
 
 // Definir puerto
 const PORT = process.env.PORT || 4000;
