@@ -13,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/reservaciones',
-      name: 'appointment',
+      name: 'appointments',
       component: AppointmentsLayout,
       meta: { requiresAuth: true},
       children: [

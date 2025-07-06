@@ -16,7 +16,6 @@
             const { data } = await AppointmentAPI.getById(id)
             appointments.setSelectedAppointment(data)
         } catch (error) {
-            
             router.push({name: 'my-appointments'})
         }
     })
