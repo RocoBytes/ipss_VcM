@@ -27,6 +27,16 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Usage](#usage)
+ 
+---
+
 
 ## Overview
 
@@ -65,3 +75,29 @@ Build ipss_VcM from the source and install dependencies:
    ```bash
    git clone https://github.com/RocoBytes/ipss_VcM
    ```
+2. Navigate to the project directory:
+
+```bash
+cd ipss_VcM
+```
+
+3. Install the dependencies:
+```bash
+npm install
+```
+
+## Usage
+Run the project with:
+Using npm:
+
+In frontend:
+```bash
+cd frontend
+npm run dev
+```
+
+In backend:
+```bash
+cd backend
+node index.js --postman 
+```
