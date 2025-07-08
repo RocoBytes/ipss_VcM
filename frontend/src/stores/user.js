@@ -15,7 +15,9 @@ export const useUserStore = defineStore('user', () => {
         try {
             const { data } = await AuthAPI.auth()
             user.value = data
-            await getUserAppointments()
+            if (data && data._id) {
+                await getUserAppointments()
+            }
         } catch (error) {
             console.log(error)
         }finally{
@@ -24,8 +26,16 @@ export const useUserStore = defineStore('user', () => {
     })
 
     async function getUserAppointments(){
-        const { data } = await AppointmentAPI.getUserAppointments(user.value._id)
-        userAppointments.value = data
+        if (!user.value || !user.value._id) {
+            console.log('Usuario no disponible para obtener citas')
+            return
+        }
+        try {
+            const { data } = await AppointmentAPI.getUserAppointments(user.value._id)
+            userAppointments.value = data
+        } catch (error) {
+            console.log('Error al obtener citas del usuario:', error)
+        }
     }
 
 

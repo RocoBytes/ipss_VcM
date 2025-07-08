@@ -91,7 +91,11 @@ export const useAppointmentsStore = defineStore('appointments', () => {
         }
 
         clearAppointmentData()
-        user.getUserAppointments()
+        
+        // Verificar que el usuario esté cargado antes de obtener sus citas
+        if (user.user && user.user._id) {
+            user.getUserAppointments()
+        }
 
         router.push({name: 'my-appointments'})
     }
